@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="col-md-8">
-                <div class="chat id" id="chat"></div>
+                <div class="chat" id="chat"></div>
                 <form id="messageform">
                     <div class="form-group">
                         <label>Enter Message</label>
@@ -31,5 +31,27 @@
             </div>
         </div>
     </div>
+
+    <!-- ADD THIS SCRIPT TO HANDLE SEND & RECEIVE -->
+    <script>
+        $(function () {
+            var socket = io.connect();
+            var $messageForm = $('#messageform');
+            var $message = $('#message');
+            var $chat = $('#chat');
+
+            $messageForm.submit(function (e) {
+                e.preventDefault();
+                if ($message.val().trim() !== '') {
+                    socket.emit('send message', $message.val());
+                    $message.val('');
+                }
+            });
+
+            socket.on('new message', function (data) {
+                $chat.append('<div class="alert alert-secondary">' + data.msg + '</div>');
+            });
+        });
+    </script>
 </body>
 </html>
