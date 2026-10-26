@@ -10,6 +10,12 @@ This is a chat application built using **React** and **TypeScript** as part of t
 
 ---
 
+## 📸 App Screenshot
+
+![CHATAPP Running](./screenshot.png)
+
+---
+
 ## 🛠️ How to Install and Run
 
 ### Prerequisites
